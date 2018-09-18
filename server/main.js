@@ -21,6 +21,10 @@ const options = {
     key: fs.readFileSync(process.env.priv)
 };
 
+const audioOptions = {
+  Bucket: 'vocalNode'
+}
+
 app.use(express.static(path.join(__dirname, '../client/dist/')));
 
 app.use(require('helmet')());
@@ -42,6 +46,7 @@ io.on('connection', function (socket) {
   });
 
   socket.on('recording', audio => {
+    console.log(audio)
     socket.emit('listen', audio)
   })
 });

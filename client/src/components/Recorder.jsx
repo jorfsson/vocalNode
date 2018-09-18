@@ -30,6 +30,7 @@ const recordAudio = () =>
               resolve({ audioBlob, audioUrl, play });
             });
             mediaRecorder.stop();
+            audioChunks.pop();
           })
 
       resolve({ start, stop });
