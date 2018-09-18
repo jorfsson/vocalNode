@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const bcrypt = require('bcrypt');
+const fs = require('fs');
+
 
 const AWS = require('aws-sdk');
 const S3 = new AWS.S3();
@@ -14,11 +16,20 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
+const options = {
+    cert: fs.readFileSync('./sslcert/fullchain.pem'),
+    key: fs.readFileSync('./sslcert/privkey.pem')
+};
+
 app.use(express.static(path.join(__dirname, '../client/dist/')));
+
+app.use(require('helmet')());
 
 server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
+
+https.createServer(options, server).listen(8443);
 
 let messages = [];
 
