@@ -14,7 +14,6 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 const server = require('http').Server(app);
-const io = require('socket.io')(secure);
 
 const options = {
     cert: fs.readFileSync(process.env.full),
@@ -22,6 +21,7 @@ const options = {
 };
 
 const secure = https.createServer(options, app)
+const io = require('socket.io')(secure);
 
 const audioOptions = {
   Bucket: 'vocalNode'
