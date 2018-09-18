@@ -1,7 +1,7 @@
 import React from 'react';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:8443')
+const socket = io('https://localhost:8443')
 
 const recordAudio = () =>
   new Promise(resolve => {
@@ -48,6 +48,7 @@ class Recorder extends React.Component {
     this.stop = this.stop.bind(this);
     this.play = this.play.bind(this);
     socket.on('listen', (audio) => {
+      console.log('retrieving')
        this.setState({
          listen: audio
        })

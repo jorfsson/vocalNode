@@ -48,7 +48,7 @@ io.on('connection', function (socket) {
   });
 
   socket.on('recording', audio => {
-    console.log(audio)
+    console.log("recording: " + audio)
     socket.emit('listen', audio)
   })
 });
