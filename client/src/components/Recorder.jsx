@@ -43,7 +43,7 @@ class Recorder extends React.Component {
     this.stop = this.stop.bind(this);
     this.play = this.play.bind(this);
     socket.on('listen', (audio) => {
-      console.log('retrieving')
+      console.log('retrieving' + audio)
        this.setState({
          listen: audio
        })
@@ -65,7 +65,7 @@ class Recorder extends React.Component {
   }
 
   play() {
-    const audioUrl = URL.createObjectURL(this.state.listen);
+    const audioUrl = window.URL.createObjectURL(this.state.listen);
     const audio = new Audio(audioUrl)
     audio.play()
   }
