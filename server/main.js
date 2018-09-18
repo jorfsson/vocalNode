@@ -39,7 +39,7 @@ secure.listen(8443);
 
 let messages = [];
 
-io.on('connection', function (socket) {
+io.sockets.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
   socket.on('chat message', function (data) {
     console.log(data);
