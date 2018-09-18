@@ -14,7 +14,8 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const secure = https.createServer(options, app)
+const io = require('socket.io')(secure);
 
 const options = {
     cert: fs.readFileSync(process.env.full),
@@ -33,7 +34,7 @@ server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
-https.createServer(options, app).listen(8443);
+secure.listen(8443);
 
 let messages = [];
 
