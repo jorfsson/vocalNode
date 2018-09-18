@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
-
+const https = require('https');
 
 const AWS = require('aws-sdk');
 const S3 = new AWS.S3();
