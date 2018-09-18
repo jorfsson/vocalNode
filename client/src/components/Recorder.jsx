@@ -65,7 +65,7 @@ class Recorder extends React.Component {
   }
 
   play() {
-    const audioUrl = URL.createObjectURL(this.state.listen.audioBlob);
+    const audioUrl = URL.createObjectURL(this.state.listen.audio);
     const audio = new Audio(audioUrl)
     audio.play()
   }
