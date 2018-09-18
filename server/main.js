@@ -44,11 +44,11 @@ io.sockets.on('connection', function (socket) {
   socket.on('chat message', function (data) {
     console.log(data);
     messages.push(data)
-    socket.emit('messages', messages)
+    io.sockets.emit('messages', messages)
   });
 
   socket.on('recording', audio => {
     console.log("recording: " + audio)
-    socket.emit('listen', audio)
+    io.sockets.emit('listen', audio)
   })
 });
