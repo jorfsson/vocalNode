@@ -37,6 +37,7 @@
   "dependencies": {
     "aws-sdk": "^2.315.0",
     "express-session": "^1.15.6",
+    "helmet": "^3.13.0",
     "nodemon": "^1.18.4",
     "socket.io": "^2.1.1"
   }

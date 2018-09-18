@@ -29,7 +29,7 @@ server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
-https.createServer(options, server).listen(8443);
+https.createServer(options, app).listen(8443);
 
 let messages = [];
 
