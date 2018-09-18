@@ -17,8 +17,8 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
 const options = {
-    cert: fs.readFileSync('./sslcert/fullchain.pem'),
-    key: fs.readFileSync('./sslcert/privkey.pem')
+    cert: fs.readFileSync(process.env.full),
+    key: fs.readFileSync(process.env.priv.key)
 };
 
 app.use(express.static(path.join(__dirname, '../client/dist/')));
