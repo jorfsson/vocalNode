@@ -18,7 +18,7 @@ const io = require('socket.io')(server);
 
 const options = {
     cert: process.env.full,
-    key: process.env.priv.key
+    key: process.env.priv
 };
 
 app.use(express.static(path.join(__dirname, '../client/dist/')));
