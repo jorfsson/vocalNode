@@ -21,7 +21,7 @@ const options = {
 };
 
 const secure = https.createServer(options, app)
-const io = require('socket.io')(secure);
+const io = require('socket.io').listen(secure);
 
 const audioOptions = {
   Bucket: 'vocalNode'
