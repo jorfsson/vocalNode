@@ -22,12 +22,7 @@ const recordAudio = () =>
           new Promise(resolve => {
             mediaRecorder.addEventListener("stop", () => {
               const audioBlob = new Blob(audioChunks);
-              const audioUrl = URL.createObjectURL(audioBlob);
-              const audio = new Audio(audioUrl);
-              const play = () => {
-                audio.play();
-              };
-              resolve({ audioBlob, audioUrl, play });
+              resolve({ audioBlob });
             });
             mediaRecorder.stop();
             audioChunks.pop();
@@ -70,7 +65,8 @@ class Recorder extends React.Component {
   }
 
   play() {
-    const audio = new Audio(this.state.listen.audioUrl)
+    const audioUrl = URL.createObjectURL(this.state.listen.audioBlob);
+    const audio = new Audio(audioUrl)
     audio.play()
   }
 
