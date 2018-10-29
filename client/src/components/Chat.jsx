@@ -1,7 +1,7 @@
 import React from 'react';
 import io from 'socket.io-client';
 
-const socket = io('https://178.128.15.133:8443')
+const socket = io('http://localhost:3000')
 
 class Chat extends React.Component {
   constructor(props) {

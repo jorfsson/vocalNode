@@ -1,7 +1,7 @@
 import React from 'react';
 import io from 'socket.io-client';
 
-const socket = io('https://178.128.15.133:8443')
+const socket = io('http://localhost:3000');
 
 const recordAudio = () =>
   new Promise(resolve => {
@@ -43,7 +43,7 @@ class Recorder extends React.Component {
     this.stop = this.stop.bind(this);
     this.play = this.play.bind(this);
     socket.on('listen', (audio) => {
-      console.log('retrieving' + audio)
+      console.log('retrieving ' + audio)
        this.setState({
          listen: audio
        })
@@ -58,13 +58,28 @@ class Recorder extends React.Component {
   }
 
   async stop() {
-      console.log('stopping')
+
       const audio = await this.state.recorder.stop()
-      console.log(audio)
-      socket.emit('recording', audio)
+      // const audioUrl = URL.createObjectURL(audio.audioBlob);
+      // const audio2 = new Audio(audioUrl)
+      let reader = new FileReader();
+
+      let audioBuffer;
+
+      reader.onload = (e) =>
+        new Promise (resolve => {
+          audioBuffer = e.target.result
+          resolve(audioBuffer)
+        })
+      function bufferAudio(){}
+      reader.readAsArrayBuffer(audio.audioBlob)
+      socket.emit('recording', audioBuffer)
+
+
   }
 
   play() {
+    const audioBlob = new Blob(this.state.listen)
     const audioUrl = window.URL.createObjectURL(this.state.listen);
     const audio = new Audio(audioUrl)
     audio.play()
